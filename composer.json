@@ -1,0 +1,10 @@
+{
+    "name": "iescelia/tablon-anuncios",
+    "description": "Práctica final de DWES",
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "require": {}
+}
