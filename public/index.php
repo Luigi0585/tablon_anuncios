@@ -1,13 +1,16 @@
 <?php
 // public/index.php
 
-// Requerimos el autoloader de Composer oficial (ahora creado a mano)
+// 1. Requerimos el autoloader de Composer creado a mano
 require_once __DIR__ . '/../vendor/autoload.php';
 
-// Iniciamos la sesión (paso obligatorio para la autenticación y tokens CSRF)
+// 2. Inicializamos el sistema global de sesiones
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-echo "<h1>🚀 ¡Infraestructura oficial y Autoload completados con éxito!</h1>";
-echo "<p>Hemos cubierto la función de Composer manualmente. Todo está listo para la lógica de la práctica.</p>";
+use App\Core\Router;
+
+// 3. Arrancamos el enrutador para delegar la petición al controlador correspondiente
+$router = new Router();
+$router->enrutar();

@@ -12,8 +12,9 @@ class AuthController {
         $this->userModel = new User($db);
     }
 
-    // Muestra formulario de registro
+    // Muestra formulario de registro 
     public function showRegisterForm() {
+        // Usamos __DIR__ para salir de Controllers e ir directo a Views/auth/
         require_once __DIR__ . '/../Views/auth/register.php';
     }
 

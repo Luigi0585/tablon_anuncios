@@ -19,9 +19,16 @@ services:
       - red-tablon
     # Ejecuta comandos internos: activa la reescritura de URLs para el .htaccess,
     # instala la extensión PDO para MySQL y arranca Apache.
-    command: >
-      bash -c "a2enmod rewrite && docker-php-ext-install pdo pdo_mysql && apache2-foreground"
-
+    # ---
+    # NOTA: Se ha modificado este archivo otra vez porque al abrir el enlace http://localhost:8080/ se ha mostrado un mensaje de error.
+    # Se suponde que dichas modificaciones harán que el programa funcione.
+    command: > 
+      bash -c "
+      sed -ri -e 's!/var/www/html!/var/www/html/public!g' /etc/apache2/sites-available/*.conf &&
+      sed -ri -e 's!/var/www/!/var/www/html/public!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf &&
+      a2enmod rewrite &&
+      docker-php-ext-install pdo pdo_mysql &&
+      apache2-foreground"
   # 2. Base de datos (MySQL 8.0)
   db:
     image: mysql:8.0
